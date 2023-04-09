@@ -1,0 +1,122 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200;300;500&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Gemunu Libre', sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  background: #181937;
+}
+.mainContainer{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+.displayNone{
+  display: none;
+}
+.gameSettings{
+  color: aliceblue;
+  display: grid;
+  grid-template: 1fr;
+  justify-items: center;
+  text-align: center;
+}
+.buttons{
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  padding-top: 20px;
+  width: 100px;
+  height: 100px;
+  padding-bottom: 20px;
+}
+.btnStyle{
+  font-size: large;
+  font-weight: 600;
+  height: 25px;
+  margin: 3px;
+ 
+}
+.startBtn{
+  font-size: large;
+  font-weight: 600;
+  background-color: #01fe87;
+}
+.restart{
+  background-color: #01fe87;
+}
+.instruction{
+  padding-top: 5px;
+}
+.random{
+  background-color:  #01fe87;
+}
+.cradsHeading{
+  color: #fff;
+  text-align: center;
+}
+.cradsParagraph{
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+.cradsFooter{
+  color: #fff;
+  text-align: center;
+  padding-top: 10px;
+}
+.name{
+  color:#01fe87;
+}
+.project{
+  color:#01fe87;
+}
+.memory-game {
+  width: 600px;
+  height: 600px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  perspective: 1000px;
+}
+
+.memory-card {
+  width: calc(25% - 10px);
+  height: calc(33.333% - 10px);
+  margin: 5px;
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.memory-card:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+.memory-card.flip {
+  transform: rotateY(180deg);
+}
+
+.front-face,
+.back-face {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
+  background: #7d79c8;
+  backface-visibility: hidden;
+}
+.front-face {
+  transform: rotateY(180deg);
+}

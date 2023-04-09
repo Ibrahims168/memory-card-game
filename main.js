@@ -1,0 +1,209 @@
+const cards = document.querySelectorAll(".memory-card");
+const heading = document.querySelector(".heading");
+let isCardFlipped = false;
+let lockBoard = false;
+let firstCard;
+let secondCard;
+
+shuffle()
+
+// buttons
+var stratBtn = document.querySelector(".startBtn")
+var harryPotter = document.querySelector(".harryPotter");
+var dogsBtn = document.querySelector(".dogs");
+var flagsBtn = document.querySelector(".flags");
+var restartBtn = document.querySelector(".restart");
+var randomBtn = document.querySelector(".random");
+
+    
+    // start btn 
+    stratBtn.addEventListener("click", () => {
+        heading.textContent = "Please, choose an option!"
+        stratBtn.classList.add("displayNone")
+        harryPotter.classList.remove("displayNone")
+        dogsBtn.classList.remove("displayNone")
+        flagsBtn.classList.remove("displayNone")
+        randomBtn.classList.remove("displayNone")
+
+        getRandomOption(randomBtn)
+    })
+    
+    // restart btn
+    restartBtn.addEventListener("click", () => {
+        location.reload()
+    })
+
+    // harry poter btn
+    harryPotter.addEventListener("click", () => {
+        showCards = document.querySelector(".mainCardsContainer").classList.remove("displayNone");
+        document.querySelector(".headerCardsContainer").classList.add("displayNone")
+        heading.textContent = "Play";
+        harryPotter.classList.add("displayNone");
+        dogsBtn.classList.add("displayNone");
+        flagsBtn.classList.add("displayNone");
+        restartBtn.classList.remove("displayNone");
+        randomBtn.classList.add("displayNone")
+        
+        
+        $.getJSON("https://hp-api.onrender.com/api/characters", function (data){
+            // background image
+            var backFaceImg = data[0].image;
+            $(".back-face").attr("src", backFaceImg);
+        // card image
+        var apiImg1 = data[1].image;
+        $(".front-face.apiImg1").attr("src", apiImg1);
+        var apiImg2 = data[2].image;
+        $(".front-face.apiImg2").attr("src", apiImg2);
+        var apiImg3 = data[3].image;
+        $(".front-face.apiImg3").attr("src", apiImg3);
+        var apiImg4 = data[4].image;
+        $(".front-face.apiImg4").attr("src", apiImg4);
+        var apiImg5 = data[5].image;
+        $(".front-face.apiImg5").attr("src", apiImg5);
+        var apiImg6 = data[6].image;
+        $(".front-face.apiImg6").attr("src", apiImg6);   
+    })
+})
+
+// dogs btn 
+dogsBtn.addEventListener("click", () => {
+    showCards = document.querySelector(".mainCardsContainer").classList.remove("displayNone");
+    document.querySelector(".headerCardsContainer").classList.add("displayNone")
+    heading.textContent = "Play";
+    harryPotter.classList.add("displayNone");
+    dogsBtn.classList.add("displayNone");
+    flagsBtn.classList.add("displayNone");
+    restartBtn.classList.remove("displayNone");
+    randomBtn.classList.add("displayNone")
+    
+    $.getJSON("https://dog.ceo/api/breed/hound/images", function (data){
+        // back face image
+        var backFaceImg = data.message[0];
+        $(".back-face").attr("src", backFaceImg);
+        // front face image (card image)
+        var apiImg1 = data.message[1];
+        $(".front-face.apiImg1").attr("src", apiImg1);
+        var apiImg2 = data.message[2];
+        $(".front-face.apiImg2").attr("src", apiImg2);
+        var apiImg3 = data.message[3];
+        $(".front-face.apiImg3").attr("src", apiImg3);
+        var apiImg4 = data.message[4];
+        $(".front-face.apiImg4").attr("src", apiImg4);
+        var apiImg5 = data.message[5];
+        $(".front-face.apiImg5").attr("src", apiImg5);
+        var apiImg6 = data.message[6];
+        $(".front-face.apiImg6").attr("src", apiImg6);      
+        
+    })
+})
+
+flagsBtn.addEventListener("click", () => {
+    showCards = document.querySelector(".mainCardsContainer").classList.remove("displayNone");
+    document.querySelector(".headerCardsContainer").classList.add("displayNone")
+    heading.textContent = "Play";
+    harryPotter.classList.add("displayNone");
+    dogsBtn.classList.add("displayNone");
+    flagsBtn.classList.add("displayNone");
+    restartBtn.classList.remove("displayNone");
+    randomBtn.classList.add("displayNone")
+    
+    $.getJSON("https://dog.ceo/api/breed/hound/images", function (data){
+        // back face image
+        var backFaceImg = "https://flagsapi.com/PL/shiny/64.png";
+        $(".back-face").attr("src", backFaceImg);
+        // front face image (card image)
+        var apiImg1 = "https://flagsapi.com/RW/shiny/64.png";
+        $(".front-face.apiImg1").attr("src", apiImg1);
+        var apiImg2 = "https://flagsapi.com/US/shiny/64.png";
+        $(".front-face.apiImg2").attr("src", apiImg2);
+        var apiImg3 = "https://flagsapi.com/RE/shiny/64.png";
+        $(".front-face.apiImg3").attr("src", apiImg3);
+        var apiImg4 = "https://flagsapi.com/JP/shiny/64.png";
+        $(".front-face.apiImg4").attr("src", apiImg4);
+        var apiImg5 = "https://flagsapi.com/IT/shiny/64.png";
+        $(".front-face.apiImg5").attr("src", apiImg5);
+        var apiImg6 = "https://flagsapi.com/MX/shiny/64.png";
+        $(".front-face.apiImg6").attr("src", apiImg6);      
+    })
+})
+
+// random btn 
+randomBtn.addEventListener("click", () => {
+    const randomOption = getRandomOption()
+        randomOption.click();
+        randomBtn.classList.add("displayNone")
+        document.querySelector(".headerCardsContainer").classList.add("displayNone")
+})
+// random option function
+var options = [harryPotter, dogsBtn, flagsBtn]
+function getRandomOption(){
+     return  options[Math.floor(Math.random() * options.length)];
+}
+
+// add event Listener to all cards
+cards.forEach((card) => {
+    card.addEventListener("click", flipCard)
+})
+//shuffle cards
+function shuffle(){
+    cards.forEach((card) => {
+        let randomPosition = Math.floor(Math.random() * 12); // give me random numbers 0- 12
+        card.style.order = randomPosition
+
+    })
+}
+// board cards
+function flipCard(){
+    if (lockBoard) {
+        return;
+    } 
+    else if (this === firstCard) {
+        return;
+    }
+    else{
+        this.classList.add("flip")
+        console.log("this is my card " + this)
+
+        // flipped first card
+        if (!isCardFlipped) {
+            isCardFlipped = true;
+            firstCard = this;
+            return;
+            // fliped second card
+        } else {
+            secondCard = this;
+            checkForMatch()
+        }
+    }
+
+}
+
+// check for match
+function checkForMatch() {
+    lockBoard = true;
+    let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+  
+    isMatch ? disableCards() : unflipCards();
+  };
+  
+  function disableCards() {
+    firstCard.removeEventListener("click", flipCard);
+    secondCard.removeEventListener("click", flipCard);
+    resetBoard();
+  };
+  
+  function unflipCards() {
+    setTimeout(() => {
+      firstCard.classList.remove("flip");
+      secondCard.classList.remove("flip");
+      resetBoard();
+    }, 1500);
+  };
+  
+  function resetBoard() {
+    isCardFlipped = false;
+    lockBoard = false;
+    firstCard = null;
+    secondCard = null;
+  };
+  
