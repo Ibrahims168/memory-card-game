@@ -134,7 +134,7 @@ body {
     align-items: center;
   }
   .gameSettings{
-    padding-top: 60px;
+    padding: 10px;
     width: 100%;
     color: aliceblue;
     display: grid;
