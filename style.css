@@ -121,10 +121,7 @@ body {
 .front-face {
   transform: rotateY(180deg);
 }
-#spinIcon{
-  color: #01fe87;
-  padding: 30px;
-}
+
 
 @media (max-width:800px) {
   body{
@@ -147,7 +144,7 @@ body {
   }
   .memory-game {
     max-width: 450px;
-    max-height: 400px;
+    max-height: 450px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
@@ -174,8 +171,8 @@ body {
     text-align: center;
   }
   .memory-game {
-    max-width: 320px;
-    max-height: 320px;
+    max-width: 350px;
+    max-height: 350px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
