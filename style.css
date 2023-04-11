@@ -134,6 +134,24 @@ body {
 .HeadingParagraph{
   padding-top: 5px;
 }
+.iconLinks{
+  padding-left: 44%;
+}
+.githubIcon{
+  padding-top: 10px;
+  padding-right: 5px;
+  color: #fff;
+  font-size: 20px;
+}
+.linkedin{
+  padding-right: 5px;
+  color: #fff;
+  font-size: 20px;
+}
+.instagram{
+  color: #fff;
+  font-size: 20px;
+}
 
 
 @media (max-width:800px) {
