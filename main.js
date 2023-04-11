@@ -106,6 +106,7 @@ flagsBtn.addEventListener("click", () => {
     flagsBtn.classList.add("displayNone");
     restartBtn.classList.remove("displayNone");
     randomBtn.classList.add("displayNone");
+
         // back face image
         var backFaceImg = "https://cdn-icons-png.flaticon.com/512/473/473724.png";
         $(".back-face").attr("src", backFaceImg);
@@ -205,4 +206,4 @@ function checkForMatch() {
     firstCard = null;
     secondCard = null;
   };
-  
+
