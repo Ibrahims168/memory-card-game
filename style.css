@@ -151,7 +151,7 @@ body {
     perspective: 1000px;
   }
 }
-@media (max-width:448px) {
+@media (max-width:470px) {
   body{
     display: grid;
   }
@@ -162,8 +162,7 @@ body {
     align-items: center;
   }
   .gameSettings{
-    padding-top: 60px;
-    width: 100%;
+    padding-top: 30px;
     color: aliceblue;
     display: grid;
     grid-template: 1fr;
