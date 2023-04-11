@@ -33,7 +33,7 @@ body {
 .buttons{
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  padding-top: 20px;
+  padding-top: 10px;
   width: 100px;
   height: 100px;
   padding-bottom: 20px;
@@ -120,6 +120,19 @@ body {
 }
 .front-face {
   transform: rotateY(180deg);
+}
+
+
+.score{
+  font-size: larger;
+  padding-top: 5px;
+}
+.timer{
+  font-size: larger;
+  padding-top: 5px;
+}
+.HeadingParagraph{
+  padding-top: 5px;
 }
 
 

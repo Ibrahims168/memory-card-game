@@ -38,8 +38,10 @@ restartBtn.addEventListener("click", () => {
     // harry poter btn
     harryPotter.addEventListener("click", () => {
         showCards = document.querySelector(".mainCardsContainer").classList.remove("displayNone");
-        document.querySelector(".headerCardsContainer").classList.add("displayNone")
-        heading.textContent = "Play";
+        document.querySelector(".headerCardsContainer").classList.add("displayNone");
+        document.querySelector(".score").classList.remove("displayNone");
+        document.querySelector(".timer").classList.remove("displayNone");
+        heading.textContent = "Harry Potter Edition";
         harryPotter.classList.add("displayNone");
         dogsBtn.classList.add("displayNone");
         flagsBtn.classList.add("displayNone");
@@ -69,8 +71,10 @@ restartBtn.addEventListener("click", () => {
 // dogs btn 
 dogsBtn.addEventListener("click", () => {
     showCards = document.querySelector(".mainCardsContainer").classList.remove("displayNone");
-    document.querySelector(".headerCardsContainer").classList.add("displayNone")
-    heading.textContent = "Play";
+    document.querySelector(".headerCardsContainer").classList.add("displayNone");
+    document.querySelector(".score").classList.remove("displayNone");
+    document.querySelector(".timer").classList.remove("displayNone");
+    heading.textContent = "Dogs Edition";
     harryPotter.classList.add("displayNone");
     dogsBtn.classList.add("displayNone");
     flagsBtn.classList.add("displayNone");
@@ -99,8 +103,10 @@ dogsBtn.addEventListener("click", () => {
 // flags btn
 flagsBtn.addEventListener("click", () => {
     showCards = document.querySelector(".mainCardsContainer").classList.remove("displayNone");
-    document.querySelector(".headerCardsContainer").classList.add("displayNone")
-    heading.textContent = "Play";
+    document.querySelector(".headerCardsContainer").classList.add("displayNone");
+    document.querySelector(".score").classList.remove("displayNone");
+    document.querySelector(".timer").classList.remove("displayNone");
+    heading.textContent = "Flags Edition";
     harryPotter.classList.add("displayNone");
     dogsBtn.classList.add("displayNone");
     flagsBtn.classList.add("displayNone");
@@ -131,9 +137,10 @@ flagsBtn.addEventListener("click", () => {
 randomBtn.addEventListener("click", () => {
     const randomOption = getRandomOption()
         randomOption.click();
-        randomBtn.classList.add("displayNone")
-        document.querySelector(".headerCardsContainer").classList.add("displayNone")
-})
+        randomBtn.classList.add("displayNone");
+        document.querySelector(".headerCardsContainer").classList.add("displayNone");
+        document.querySelector(".HeadingParagraph").classList.remove("displayNone"); 
+});
 // random option function
 var options = [harryPotter, dogsBtn, flagsBtn]
 function getRandomOption(){
@@ -150,15 +157,54 @@ function shuffle(){
         card.style.order = randomPosition
  });
 };
+
 // check if all the card are flipped
 function checkAllCardsFlipped() {
     const cards = document.querySelectorAll('.memory-card');
     const allFlipped = Array.from(cards).every(card => card.classList.contains('flip'));
     if (allFlipped) {
-      heading.textContent = "Congratulations, you have flipped all the cards!";
+        stopTimer()
+        document.querySelector(".score").classList.add("displayNone");
+        document.querySelector(".timer").classList.add("displayNone");
+        document.querySelector(".HeadingParagraph").classList.add("displayNone");
+        heading.textContent = "Congratulations, you have flipped all the cards in " + seconds + " seconds and " + score + " trys";
     };
   };
+
+// start the timer only on the first click
+let firstClick = true;
+function handleClick(){
+  if (firstClick) {
+    startTimer()
+    firstClick = false; 
+  }
+}
+
+// timer function for seconds
+let seconds = 00;
+let timerId;
+  
+function startTimer() {
+    timerId = setInterval(() => {
+      seconds++;
+      const timerDisplay = document.querySelector(".timer");
+      timerDisplay.textContent = "Time: " +seconds;
+    }, 1000);
+  }
+  
+  function stopTimer() {
+    clearInterval(timerId);
+  }
+
+// count how many guess
+function addToScore(){
+    document.querySelector(".score").textContent = "Trys: " + score;
+}
+
+
 // board cards
+var score = 0
+var clicks = 0
 function flipCard(){
     if (lockBoard) {
         return;
@@ -167,13 +213,17 @@ function flipCard(){
         return;
     }
     else{
-        this.classList.add("flip")
-        console.log("this is my card " + this)
-
+        this.classList.add("flip");
+        clicks++
+        if (clicks % 2 ==0) {
+            score++
+            addToScore()
+        }
         // flipped first card
         if (!isCardFlipped) {
             isCardFlipped = true;
             firstCard = this;
+            handleClick()
             return;
             // fliped second card
         } else {
