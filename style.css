@@ -1,4 +1,5 @@
 
+  /* google font links */
   @import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200;300;500&display=swap');
 
 * {
@@ -119,4 +120,8 @@ body {
 }
 .front-face {
   transform: rotateY(180deg);
+}
+#spinIcon{
+  color: #01fe87;
+  padding: 30px;
 }

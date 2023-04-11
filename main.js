@@ -8,7 +8,7 @@ let secondCard;
 shuffle()
 
 // buttons
-var stratBtn = document.querySelector(".startBtn")
+var startBtn = document.querySelector(".startBtn")
 var harryPotter = document.querySelector(".harryPotter");
 var dogsBtn = document.querySelector(".dogs");
 var flagsBtn = document.querySelector(".flags");
@@ -16,22 +16,24 @@ var restartBtn = document.querySelector(".restart");
 var randomBtn = document.querySelector(".random");
 
     
-    // start btn 
-    stratBtn.addEventListener("click", () => {
-        heading.textContent = "Please, choose an option!"
-        stratBtn.classList.add("displayNone")
-        harryPotter.classList.remove("displayNone")
-        dogsBtn.classList.remove("displayNone")
-        flagsBtn.classList.remove("displayNone")
-        randomBtn.classList.remove("displayNone")
+// start btn 
+startBtn.addEventListener("click", () => {
+     heading.textContent = "Please, choose an option!"
+     startBtn.classList.add("displayNone");
+     harryPotter.classList.remove("displayNone");
+     dogsBtn.classList.remove("displayNone");
+     flagsBtn.classList.remove("displayNone");
+     randomBtn.classList.remove("displayNone");
+     document.querySelector("#beatIcon").classList.add("displayNone");
 
-        getRandomOption(randomBtn)
-    })
+    getRandomOption(randomBtn);
+});
     
-    // restart btn
-    restartBtn.addEventListener("click", () => {
-        location.reload()
-    })
+// restart btn
+restartBtn.addEventListener("click", () => {
+    location.reload()
+});
+
 
     // harry poter btn
     harryPotter.addEventListener("click", () => {
@@ -42,13 +44,12 @@ var randomBtn = document.querySelector(".random");
         dogsBtn.classList.add("displayNone");
         flagsBtn.classList.add("displayNone");
         restartBtn.classList.remove("displayNone");
-        randomBtn.classList.add("displayNone")
-        
-        
+        randomBtn.classList.add("displayNone");
+        // background image
+        var backFaceImg = "https://cdn-icons-png.flaticon.com/512/1601/1601065.png";
+        $(".back-face").attr("src", backFaceImg);
+        //api link harry potter characters
         $.getJSON("https://hp-api.onrender.com/api/characters", function (data){
-            // background image
-            var backFaceImg = data[0].image;
-            $(".back-face").attr("src", backFaceImg);
         // card image
         var apiImg1 = data[1].image;
         $(".front-face.apiImg1").attr("src", apiImg1);
@@ -60,7 +61,7 @@ var randomBtn = document.querySelector(".random");
         $(".front-face.apiImg4").attr("src", apiImg4);
         var apiImg5 = data[5].image;
         $(".front-face.apiImg5").attr("src", apiImg5);
-        var apiImg6 = data[6].image;
+        var apiImg6 = data[0].image;
         $(".front-face.apiImg6").attr("src", apiImg6);   
     })
 })
@@ -74,13 +75,12 @@ dogsBtn.addEventListener("click", () => {
     dogsBtn.classList.add("displayNone");
     flagsBtn.classList.add("displayNone");
     restartBtn.classList.remove("displayNone");
-    randomBtn.classList.add("displayNone")
-    
-    $.getJSON("https://dog.ceo/api/breed/hound/images", function (data){
+    randomBtn.classList.add("displayNone");
         // back face image
-        var backFaceImg = data.message[0];
+        var backFaceImg = "https://cdn-icons-png.flaticon.com/512/1662/1662923.png";
         $(".back-face").attr("src", backFaceImg);
-        // front face image (card image)
+        // front face image (card image) api dogs link
+        $.getJSON("https://dog.ceo/api/breed/hound/images", function (data){
         var apiImg1 = data.message[1];
         $(".front-face.apiImg1").attr("src", apiImg1);
         var apiImg2 = data.message[2];
@@ -92,11 +92,11 @@ dogsBtn.addEventListener("click", () => {
         var apiImg5 = data.message[5];
         $(".front-face.apiImg5").attr("src", apiImg5);
         var apiImg6 = data.message[6];
-        $(".front-face.apiImg6").attr("src", apiImg6);      
-        
-    })
-})
+        $(".front-face.apiImg6").attr("src", apiImg6);         
+    });
+});
 
+// flags btn
 flagsBtn.addEventListener("click", () => {
     showCards = document.querySelector(".mainCardsContainer").classList.remove("displayNone");
     document.querySelector(".headerCardsContainer").classList.add("displayNone")
@@ -105,11 +105,9 @@ flagsBtn.addEventListener("click", () => {
     dogsBtn.classList.add("displayNone");
     flagsBtn.classList.add("displayNone");
     restartBtn.classList.remove("displayNone");
-    randomBtn.classList.add("displayNone")
-    
-    $.getJSON("https://dog.ceo/api/breed/hound/images", function (data){
+    randomBtn.classList.add("displayNone");
         // back face image
-        var backFaceImg = "https://flagsapi.com/PL/shiny/64.png";
+        var backFaceImg = "https://cdn-icons-png.flaticon.com/512/473/473724.png";
         $(".back-face").attr("src", backFaceImg);
         // front face image (card image)
         var apiImg1 = "https://flagsapi.com/RW/shiny/64.png";
@@ -124,8 +122,9 @@ flagsBtn.addEventListener("click", () => {
         $(".front-face.apiImg5").attr("src", apiImg5);
         var apiImg6 = "https://flagsapi.com/MX/shiny/64.png";
         $(".front-face.apiImg6").attr("src", apiImg6);      
-    })
-})
+
+});
+
 
 // random btn 
 randomBtn.addEventListener("click", () => {
@@ -147,7 +146,7 @@ cards.forEach((card) => {
 //shuffle cards
 function shuffle(){
     cards.forEach((card) => {
-        let randomPosition = Math.floor(Math.random() * 12); // give me random numbers 0- 12
+        let randomPosition = Math.floor(Math.random() * 12); // give me random numbers 0 - 12
         card.style.order = randomPosition
 
     })
@@ -182,9 +181,9 @@ function flipCard(){
 function checkForMatch() {
     lockBoard = true;
     let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
-  
+    
     isMatch ? disableCards() : unflipCards();
-  };
+};
   
   function disableCards() {
     firstCard.removeEventListener("click", flipCard);
