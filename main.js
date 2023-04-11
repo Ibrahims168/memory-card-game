@@ -31,7 +31,7 @@ startBtn.addEventListener("click", () => {
     
 // restart btn
 restartBtn.addEventListener("click", () => {
-    location.reload()
+    location.reload()  
 });
 
 
@@ -138,20 +138,26 @@ randomBtn.addEventListener("click", () => {
 var options = [harryPotter, dogsBtn, flagsBtn]
 function getRandomOption(){
      return  options[Math.floor(Math.random() * options.length)];
-}
-
+};
 // add event Listener to all cards
 cards.forEach((card) => {
     card.addEventListener("click", flipCard)
-})
+});
 //shuffle cards
 function shuffle(){
     cards.forEach((card) => {
         let randomPosition = Math.floor(Math.random() * 12); // give me random numbers 0 - 12
         card.style.order = randomPosition
-
-    })
-}
+ });
+};
+// check if all the card are flipped
+function checkAllCardsFlipped() {
+    const cards = document.querySelectorAll('.memory-card');
+    const allFlipped = Array.from(cards).every(card => card.classList.contains('flip'));
+    if (allFlipped) {
+      heading.textContent = "Congratulations, you have flipped all the cards!";
+    };
+  };
 // board cards
 function flipCard(){
     if (lockBoard) {
@@ -173,11 +179,10 @@ function flipCard(){
         } else {
             secondCard = this;
             checkForMatch()
-        }
-    }
-
-}
-
+            checkAllCardsFlipped()
+        };
+    };
+};
 // check for match
 function checkForMatch() {
     lockBoard = true;
@@ -185,13 +190,13 @@ function checkForMatch() {
     
     isMatch ? disableCards() : unflipCards();
 };
-  
+  // disable cards
   function disableCards() {
     firstCard.removeEventListener("click", flipCard);
     secondCard.removeEventListener("click", flipCard);
     resetBoard();
   };
-  
+  // unflipped cards
   function unflipCards() {
     setTimeout(() => {
       firstCard.classList.remove("flip");
@@ -199,7 +204,7 @@ function checkForMatch() {
       resetBoard();
     }, 1500);
   };
-  
+  // reset board
   function resetBoard() {
     isCardFlipped = false;
     lockBoard = false;
