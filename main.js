@@ -167,7 +167,7 @@ function checkAllCardsFlipped() {
         document.querySelector(".score").classList.add("displayNone");
         document.querySelector(".timer").classList.add("displayNone");
         document.querySelector(".HeadingParagraph").classList.add("displayNone");
-        heading.textContent = "Congratulations, you have flipped all the cards in " + seconds + " seconds and " + score + " trys";
+        heading.textContent = "Congratulations, you have flipped all the cards in " + seconds + " seconds and in " + score + " trys";
     };
   };
 
