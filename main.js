@@ -24,8 +24,8 @@ startBtn.addEventListener("click", () => {
      dogsBtn.classList.remove("displayNone");
      flagsBtn.classList.remove("displayNone");
      randomBtn.classList.remove("displayNone");
-     document.querySelector("#beatIcon").classList.add("displayNone");
-
+     
+     
     getRandomOption(randomBtn);
 });
     
