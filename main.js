@@ -27,8 +27,8 @@ var dogsBtn = document.querySelector(".dogs");
 var flagsBtn = document.querySelector(".flags");
 var restartBtn = document.querySelector(".restart");
 var randomBtn = document.querySelector(".random");
-
     
+
 // start btn 
 startBtn.addEventListener("click", () => {
      heading.textContent = "Please, choose an option!"
@@ -62,6 +62,7 @@ harryPotter.addEventListener("click", () => {
     randomBtn.classList.add("displayNone");
     harryPotterImages();
 });
+
 // harry potter images function
 function harryPotterImages(){
     // background image
@@ -207,8 +208,8 @@ function addToScore(){
 
 // check if all the card are flipped (Game Over)
 function checkAllCardsFlipped() {
-  const cards = document.querySelectorAll('.memory-card');
-  const allFlipped = Array.from(cards).every(card => card.classList.contains('flip'));
+
+  const allFlipped = Array.from(cards).every(card => card.classList.contains("flip"));
   if (allFlipped) {
       stopTimer();
       document.querySelector(".score").classList.add("displayNone");
@@ -221,6 +222,7 @@ function checkAllCardsFlipped() {
 // board cards
 var score = 0
 var clicks = 0
+
 function flipCard(){
     if (lockBoard) {
         return;
@@ -277,15 +279,3 @@ function checkForMatch() {
     firstCard = null;
     secondCard = null;
   };
-
-
-// Bonos section 
-// not working :'(
-function getRandomImagesOfHarryPotter() {
-  $.getJSON("https://hp-api.onrender.com/api/characters", function (data){
-    var randomIndex = Math.floor(Math.random() * data.length); 
-    var randomCharacter = data[randomIndex];
-
-    $(".front-face.apiImg1").attr("src", randomCharacter.image);
-  });
-};

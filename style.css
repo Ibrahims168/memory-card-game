@@ -154,8 +154,9 @@ body {
   color: #fff;
   font-size: 20px;
 }
-.smileFace{
-  
+.headerCardsContainer{
+  font-size: larger;
+  padding: 20px;
 }
 
 @media (max-width:800px) {
