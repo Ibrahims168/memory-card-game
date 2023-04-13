@@ -173,7 +173,7 @@ randomBtn.addEventListener("click", () => {
 })
 
 // start the timer only on the first click
-let firstClick = true;
+var firstClick = true;
 function handleClick(){
   if (firstClick) {
     startTimer()
@@ -182,13 +182,14 @@ function handleClick(){
 };
 
 // timer function for seconds
-let seconds = 00;
-let timerId;
+var timerDisplay = document.querySelector(".timer");
+var seconds = 00;
+var timerId;
   
 function startTimer() {
     timerId = setInterval(() => {
       seconds++;
-      const timerDisplay = document.querySelector(".timer");
+
       timerDisplay.textContent = "Time: " + seconds;
     }, 1000);
   };
@@ -213,7 +214,7 @@ function checkAllCardsFlipped() {
       document.querySelector(".score").classList.add("displayNone");
       document.querySelector(".timer").classList.add("displayNone");
       document.querySelector(".HeadingParagraph").classList.add("displayNone");
-      heading.textContent = "Congratulations, you have flipped all the cards in " + seconds + " seconds and in " + score + " trys";
+      heading.textContent = "Congratulations, you have flipped all the cards in " + seconds + " seconds and in " + score + " trys ";
   };
 };
 
@@ -276,6 +277,7 @@ function checkForMatch() {
     firstCard = null;
     secondCard = null;
   };
+
 
 // Bonos section 
 // not working :'(

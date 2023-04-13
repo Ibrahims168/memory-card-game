@@ -29,6 +29,7 @@ body {
   grid-template: 1fr;
   justify-items: center;
   text-align: center;
+  padding: 20px;
 }
 .buttons{
   display: grid;
@@ -153,7 +154,9 @@ body {
   color: #fff;
   font-size: 20px;
 }
-
+.smileFace{
+  
+}
 
 @media (max-width:800px) {
   body{
